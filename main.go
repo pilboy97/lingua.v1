@@ -1,22 +1,20 @@
 package main
 
 import (
-	"fmt"
-	"log"
+	"bufio"
 	"os"
 )
 
 func main() {
-	buf, err := os.ReadFile("test.txt")
-	if err != nil {
-		log.Panic(err)
-	}
+	scanner := bufio.NewScanner(os.Stdin)
 
-	str := addSColon(string(buf))
-	tokens := Tokenize(str)
+	for scanner.Scan() {
+		str := scanner.Text()
 
-	root := parse(tokens)
-	for _, ch := range root.Child {
-		fmt.Printf("%v\n", exec(ch))
+		tokens := Tokenize(str)
+		root := parse(tokens)
+		result := exec(root)
+
+		println(result.Value)
 	}
 }
