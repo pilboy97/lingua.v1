@@ -1,0 +1,11 @@
+STMT
+    EXPR STMT
+EXPR
+    MUL + EXPR
+    MUL - EXPR
+MUL
+    FACTOR * MUL
+    FACTOR / MUL
+FACTOR
+    (EXPR)
+    NUMBER
